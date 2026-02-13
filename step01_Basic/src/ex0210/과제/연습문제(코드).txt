@@ -1,0 +1,153 @@
+12. 다음 클래스에서 해당 멤버가 필드, 생성자, 메소드 중 어떤 것인지 (   )안에 적어 보세요.
+  public class Member {
+	private String name;      		  -----> (     필드    )
+	public Member(String name) {...}        -----> (   생성자   )
+	public void setName(String name) {...} -----> (   메소드   )
+  }
+
+
+13. 현실 세계의 회원을 Member 클래스로 모델링하려고 합니다. 회원의 데이터로는 이름, 아이디, 패스워드, 나이가 있습니다. 이 데이터들을 가지는 Member 클래스를 선언해 보세요.
+
+           데이터이름        |      필드이름       |      타입
+                이름	        |         name        |      문자열
+               아이디         |           id	        |      문자열
+             패스워드        |     password       |      문자열
+                나이	        |          age	        |       정수
+
+public class Member {
+	String name;
+	String id;
+	String password;
+	int age;
+}
+
+
+14. 13번 문제에서 작성한 Member 클래스에 생성자를 추가하려고 합니다. 다음과 같이 name 필드와 id 필드를 외부에서 받은 값으로 초기화하도록 생성자를 선언해 보세요.
+
+	Member user1 = new Member("홍길동", "hong");
+	
+-> public Member(String name, String id) {
+	this.name = name;
+	this.id = id;
+	System.out.println("이름 = " + name + " 아이디 = " + id);
+}
+
+
+15. login( ) 메소드를 호출할 때에는 매개값으로 id와 password를 제공하고, logout( ) 메소드는 id만 매개값으로 제공하려고 합니다.  다음 조건과 예제 코드를 보고 MemberService 클래스에서 login( ), logout( ) 메소드를 선언해 보세요.
+   1) login( ) 메소드는 매개값 id가 "hong", 매개값 password가 "12345" 일 경우에만 true로 리턴
+   2) logout( ) 메소드는 id + "님이 로그아웃 되었습니다" 가 출력되도록 할 것
+
+           리턴타입       |      메소드 이름      |      매개변수(타입)
+           boolean	     |         login	        |     id(String), password(String)
+              void          |        logout	        |     id(String)
+
+class MemberService {
+	public static void main(String[] args) {
+		MemberService memberService = new MemberService( );
+		boolean result = memberService.login("hong", "12345");
+		if( result ) {
+			System.out.println("로그인 되었습니다.");
+		}else {
+			System.out.println("id 또는 password가 올바르지 않습니다.");
+		}
+	}
+
+	// 전역 변수 선언
+	String saveId = "hong";
+	String savePwd = "12345";
+
+	// login method
+	public boolean login(String id, String password) {
+		if( saveId.equals(id) && savePwd.equals(password) ) {
+			return true; //true일때만 반환
+		}
+		return false;
+	}
+
+	// logout method
+	public void logout(String id) {
+		if( saveId.equals(id) ) {
+			System.out.println(id + "님이 로그아웃 되었습니다.");
+		}
+	}
+}
+
+
+
+16. print( ) 메소드는 매개값을 콘솔에 출력합니다. println( ) 메소드의 매개값으로는 int, boolean, double, String 타입 값을 줄 수 있습니다. 다음 조건과 예제 코드를 보고 Printer 클래스에서 println( ) 메소드를 오버로딩하여 선언해 보세요.
+
+           리턴타입      |      메소드 이름     |      매개변수(타입)
+              void	     |         println	        |     value(int, boolean, double, String)
+
+class Printer {
+	public static void main(String[] args) {
+		Printer printer = new Printer( );
+		printer.println(10);
+		printer.println(true);
+		printer.println(5.7);
+		printer.println("홍길동");
+	}
+	//오버로딩 선언
+	public int println(int i) {
+		System.out.println("int = " + i);
+		return i;
+	}
+	public boolean println(boolean b) {
+		System.out.println("boolean = " + b);
+		return b;
+	}
+	public double println(double db) {
+		System.out.println("double = " + db);
+		return db;
+	}
+	public String println(String str) {
+		System.out.println("String = " + str);
+		return str;
+	}
+
+}
+
+
+17. 16번 문제에서는 Printer 객체를 생성하고 println( ) 메소드를 호출했습니다. 이번에는 Printer 객체를 생성하지 않고도 다음과 같이 호출할 수 있도록 Printer 클래스를 수정해 보세요.
+
+public class Printer {
+
+	public static void main(String[] args) {
+
+		Printer.println(10);
+		Printer.println(true);
+		Printer.println(5.7);
+		Printer.println("홍길동");
+		return;
+	}
+	// 객체생성없는 static 선언
+	public static int println(int i) {
+		System.out.println("int = " + i);
+		return i;
+	}
+	public static boolean println(boolean b) {
+		System.out.println("boolean = " + b);
+		return b;
+	}
+	public static double println(double db) {
+		System.out.println("double = " + db);
+		return db;
+	}
+	public static String println(String str) {
+		System.out.println("String = " + str);
+		return str;
+	}
+}
+
+
+18. 제외(싱글톤 패턴 문제)
+
+
+
+19. 은행 계좌 객체인 Account 객체는 잔고(balance)필드를 가지고 있습니다. balance 필드는 음수값이 될 수 없고, 최대 백만 원까지만 저장할 수 있습니다. 외부에서 balance 필드를 마음대로 변경하지 못하고, 0<=balance <= 1,000,000 범위의 값만 가질 수 있도록 Account 클래스를 작성해 보세요.
+
+
+
+
+
+

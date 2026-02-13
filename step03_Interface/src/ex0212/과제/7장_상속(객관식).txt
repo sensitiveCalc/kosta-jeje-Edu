@@ -1,0 +1,24 @@
+1번 = 3
+2번 = 2
+3번 = 1
+4번 = 4
+5번 = 3
+6번 = 오버라이딩은 부모 메소드의 이름, 인수, 리턴타입이 무조건 같아야 하는데 인수 개수가 달라서
+7번
+= 홍길동
+   Parent(String nation) call
+   Child() call
+   Child(String name) call
+ 
+8번
+= 스노우 타이어가 굴러갑니다.
+   스노우 타이어가 굴러갑니다.
+
+9번 = 4번
+10번 = abstract메소드를 오버라이딩하지 않았기 때문
+11번 = suepr
+12번 = a instanceof C
+a instanceof C c -> 다운캐스팅 하지 않아도 가능
+
+인터페이스에서 메소드 선언할 때 default or static은 유지보수 할 때 사용
+그 외에는 다 생략하는 편(void mehtod())

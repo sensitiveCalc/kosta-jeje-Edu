@@ -1,4 +1,4 @@
-package ex0213.과제;
+package ex0213.과제.Interface.확인문제;
 
 interface DataAccessObject {
 	public void dbWork();

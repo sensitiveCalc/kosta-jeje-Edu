@@ -18,7 +18,7 @@ public class MainApp {
 		elec[4] = new Audio("A05", 700, 100);
 
 		for (ElecFunction e : elec) {
-			 e.start();
+			e.start();
 			System.out.println(e);
 		}
 

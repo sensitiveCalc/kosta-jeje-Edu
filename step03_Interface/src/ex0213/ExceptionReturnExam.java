@@ -9,7 +9,7 @@ public class ExceptionReturnExam {
 	    		 //throw new Exception("예외발생해요~~"); //checked
 	    		 //return; //메소드를 빠져나가라
 	    		 throw new Exception("예외발생"); //checked 예외
-	    		 System.exit(0); //프로램종료!! finally 블록을 실행하지 않음
+	    		 //System.exit(0); //프로램종료!! finally 블록을 실행하지 않음
 	    	 }
 	    	 System.out.println(i+"입니다.");
     	 }finally {

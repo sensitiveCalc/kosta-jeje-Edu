@@ -7,13 +7,14 @@ package ex0212.과제;
 public class Audio extends Elec implements ElecFunction {
 	private int volumn;
 	public Audio() {}
+
 	public Audio(String code, int cost, int volumn) {
 		super(code, cost);
 		this.volumn = volumn;
 	}
-
-	public int getVolumn() {
-		return volumn;
+	public Audio(int volumn) {
+		super();
+		this.volumn = volumn;
 	}
 
 	public void setVolumn(int volumn) {

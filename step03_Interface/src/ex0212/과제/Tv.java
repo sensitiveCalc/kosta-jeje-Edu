@@ -13,8 +13,9 @@ public class Tv extends Elec implements ElecFunction {
 		this.chnnel = chnnel;
 	}
 
-	public int getChnnel(int chnnel) {
-		return chnnel;
+	public Tv(int chnnel) {
+		super();
+		this.chnnel = chnnel;
 	}
 
 	public void setChnnel(int chnnel) {

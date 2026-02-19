@@ -1,13 +1,13 @@
 package ex0213.과제.Exception;
 
-class NotExistIDException extends Exception {
+class NotExistIDException extends Exception { //checked Exception
 	public NotExistIDException() {}
 	public NotExistIDException(String message) {
 		super(message);
 		
 	}
 }
-class WrongPasswordException extends Exception {
+class WrongPasswordException extends Exception { //checked Exception
 	public WrongPasswordException() {}
 	public WrongPasswordException(String message) {
 		super(message);

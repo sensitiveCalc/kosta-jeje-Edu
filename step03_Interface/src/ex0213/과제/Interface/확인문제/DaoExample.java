@@ -11,7 +11,7 @@ interface DataAccessObject {
 
 public class DaoExample {
 	
-	public static class OracleDao implements  DataAccessObject {
+	public static class OracleDao implements DataAccessObject {
 		@Override
 		public void dbWork() {}
 		public void select() {

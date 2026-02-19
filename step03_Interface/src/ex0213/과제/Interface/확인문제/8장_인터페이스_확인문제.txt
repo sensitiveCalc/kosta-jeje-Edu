@@ -7,10 +7,10 @@
 2. 인터페이스의 구성 멤버에 대한 설명으로 틀린 것은?   3번
    1) 인터페이스는 인스턴스 필드가 없고 상수를 멤버로 가진다.
    2) 추상 메소드는 구현 클래스가 재정의해야 하는 멤버이다. (o)
-   3) 디폴트 메소드는 구현 클래스에서 재정의할 수 없다.
+   3) 디폴트 메소드는 구현 클래스에서 재정의할 수 없다. =재정의 할 수 있음
    4) 정적 멤버는 구현 객체가 없어도 사용할 수 있는 멤버이다. (o)
 
-3. 인터페이스 다형성에 대한 설명으로 틀린 것은?   3번
+3. 인터페이스 다형성에 대한 설명으로 틀린 것은?   4번
    1) 필드가 인터페이스 타입일 경우 다양한 구현 객체를 대입할 수 있다.
    2) 매개변수가 인터페이스 타입일 경우 다양한 구현 객체를 대입할 수 있다.
    3) 배열이 인터페이스 타입일 경우 다양한 구현 객체를 저장할 수 있다.
@@ -104,7 +104,7 @@ interface DataAccessObject {
 
 public class DaoExample {
 	
-	public static class OracleDao implements  DataAccessObject {
+	public static class OracleDao implements DataAccessObject {
 		@Override
 		public void dbWork() {}
 		public void select() {

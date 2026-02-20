@@ -55,7 +55,7 @@ public class BankService {
 	public AccountDto[] getAccountList(int userSeq) { // 100 
 		 int searchAccountCount=0; //인수로 전달된 userSeq에 해당하는 계좌의 개수를 체크 
 		
-		 //리턴해서 나갈 배열의 개수를 미리 알아내여 선언하기 위해 반복문 필요 
+		 //리턴해서 나갈 배열의 개수를 미리 알아내여 선언하기 위해 반복문필요 
 		 for(int i=0; i < ACCOUNT_CURRENT_SIZE ; i++) {
 				if( accountList[i].getUserSeq()  == userSeq) {
 					 //찾았다!!
@@ -63,7 +63,7 @@ public class BankService {
 				}
 		}
 			
-			//위에서 찾은 정보를 바탕으로  AccountDto배열에서 계좌정보를 찾아서 리턴해준다.
+			//위에서 찾은 정보를 바탕으로  AccountDto배열에서 계좌정보를 찾아서  리턴해준다.
 			//찾은 고객의 계좌의 수만큼 배열을 생성해서 그 배열을 리턴
 			if(searchAccountCount==0)
 				return null;

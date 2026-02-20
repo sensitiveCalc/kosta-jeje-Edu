@@ -1,24 +1,27 @@
-package com.ws03.view;
+package com.ws07.view;
 
-import com.ws03.dto.AccountDto;
-import com.ws03.dto.UserDto;
-import com.ws03.service.BankService;
+import java.util.List;
+
+import com.ws07.dto.AccountDto;
+import com.ws07.dto.UserDto;
+import com.ws07.service.BankService;
+import com.ws07.service.BankServiceImpl;
 
 public class TestView {
 
 	public static void main(String[] args) {
 		System.out.println("***1. 고객 seq 100 에 해당하는 계좌정보 검색하기 *****");
-		BankService service = new BankService();
+		BankService service = new BankServiceImpl();
 		
-        AccountDto[] accountList = service.getAccountList(100);
-		
-		if(accountList==null) {
-			System.out.println("회원의 계좌정보가 없습니다. ");
+        List<AccountDto> accountList = service.getAccountList(111); // 계좌 정보
+
+		if(accountList.size() == 0) {
+			System.out.println("회원의 계좌정보가 없습니다.");
 		}else {
-			System.out.println("회원계좌개수 : " + accountList.length);
+			System.out.println("회원계좌개수 : " + accountList.size());
 			for(AccountDto dto : accountList) {
-				System.out.println(dto.getAccountSeq() +" , " 
-			+ dto.getAccountNumber()+" , " + dto.getUserSeq());
+				System.out.println(dto.getAccountSeq() +", " 
+			+ dto.getAccountNumber()+", " + dto.getUserSeq());
 				
 			}
 		}
@@ -35,8 +38,6 @@ public class TestView {
 			System.out.println("회원의 정보가 없습니다.");
 		}
 
-		
-		
 	}//메인끝
 
 }// 클래스 끝

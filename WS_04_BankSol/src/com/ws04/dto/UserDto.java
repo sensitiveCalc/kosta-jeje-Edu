@@ -1,9 +1,12 @@
-package com.ws03.dto;
+package com.ws04.dto;
+
+import java.util.ArrayList;
+
 /**
  *  고객의 정보를 관리할 객체 
  * */
-public class UserDto {
-   private int userSeq; // setUserSeq, getUserSeq -> PK
+public class UserDto implements Comparable<UserDto> {
+   private int userSeq; // setUserSeq, getUserSeq = PK
    private String name;
    private String email;
    private String phone;
@@ -43,11 +46,22 @@ public  UserDto() {}
 		this.phone = phone;
 	}
 	
-	public boolean isSleep() {// boolean형인경우는 getSleep아니다. 
+	public boolean isSleep() {// boolean 형 인 경우는 getSleep아니다. 
 		return sleep;
 	}
 	public void setSleep(boolean sleep) {
 		this.sleep = sleep;
+	}
+	
+	@Override
+	public String toString() {
+		return "UserDto [userSeq=" + userSeq + ", name=" + name + ", email=" + email + ", phone=" + phone + ", sleep="
+				+ sleep + "]";
+	}
+	
+	@Override
+	public int compareTo(UserDto o) { //유저 번호로 정렬하는 메소드
+		return userSeq - o.getUserSeq();
 	}
 	
 

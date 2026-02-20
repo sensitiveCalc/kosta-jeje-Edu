@@ -1,16 +1,18 @@
-package com.ws03.dto;
+package com.ws06.dto;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * 고객의 계좌정보 관리하는 객체
  */
-public class AccountDto {
+public class AccountDto implements Comparator<AccountDto> {
 	private int accountSeq;
 	private String accountNumber;
 	private int balance;
 	private int userSeq; // FK
 
 	public AccountDto() {}
-
 	public AccountDto(int accountSeq, String accountNumber, int balance, int userSeq) {
 		this.accountSeq = accountSeq;
 		this.accountNumber = accountNumber;
@@ -48,6 +50,19 @@ public class AccountDto {
 
 	public void setUserSeq(int userSeq) {
 		this.userSeq = userSeq;
+	}
+	
+
+	@Override
+	public String toString() {
+		return "AccountDto [accountSeq=" + accountSeq + ", accountNumber=" + accountNumber + ", balance=" + balance
+				+ ", userSeq=" + userSeq + "]";
+	}
+	
+	
+	@Override
+	public int compare(AccountDto o1, AccountDto o2) { //잔액기준 정렬 메소드
+		return o1.getBalance() - o2.getBalance();
 	}
 
 }

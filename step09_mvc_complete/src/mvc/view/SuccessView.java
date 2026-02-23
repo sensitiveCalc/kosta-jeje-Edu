@@ -1,7 +1,7 @@
 package mvc.view;
 
-
 import java.util.List;
+
 import mvc.dto.Electronics;
 
 /**
@@ -17,7 +17,7 @@ public class SuccessView {
     public static void printAll(List<Electronics> list){
 		System.out.println("****** 전자제품 총 ("+list.size()+")개 *****************");
         for(Electronics elec : list) {
-           System.out.println(elec); //elec.toString()
+           System.out.println(elec);
         }
 
 		System.out.println();
@@ -25,7 +25,7 @@ public class SuccessView {
 
     // 모델번호에 해당하는 전제제품 출력하기
     public static void printSearchByModelNo(Electronics electronics) {
-        System.out.println("찾는 모델은 " + electronics +"입니다. \n");
+        System.out.println(electronics +"\n");
     }
 
     /**

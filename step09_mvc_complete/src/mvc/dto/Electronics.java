@@ -1,12 +1,9 @@
 package mvc.dto;
-
-import java.util.Comparator;
-
 /**
  * 전자제품의 속성을 관리하는 객체 
  */
 
-public class Electronics implements Comparator <Electronics>{
+public class Electronics /*implements Comparable<Electronics>*/{
     private int modelNo;
     private String modelName;
     private int modelPrice;
@@ -15,11 +12,10 @@ public class Electronics implements Comparator <Electronics>{
     // 생성자 3개
     public Electronics () {}
 
-    // 모델번호와 모델내용에 해당하는 전자제품 수정할 때 사용할 생성자
+    // 모델번호에 해당하는 전자제품 수정할 때 사용할 생성자
     public Electronics (int modelNo, String modelDetail) {
         this.modelNo = modelNo;
         this.modelDetail = modelDetail;        
-
     }
 
     public Electronics (int modelNo, String modelName, int modelPrice, String modelDetail) {
@@ -80,10 +76,11 @@ public class Electronics implements Comparator <Electronics>{
 		return builder.toString();
 	}
 
-	@Override
-	public int compare(Electronics e1, Electronics e2) {
-		return e1.getModelNo() - e2.getModelNo();
-	}
+//	@Override
+//	public int compareTo(Electronics o) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
     
 }

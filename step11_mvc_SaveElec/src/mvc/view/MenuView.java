@@ -8,7 +8,7 @@ import mvc.dto.Electronics;
 /**
    사용자의 요청을 키보드로 입력받는 클래스 
 */
-public class MenuView {
+public class MenuView{
     Scanner sc= new Scanner(System.in);
 	ElectronicsController controller = new ElectronicsController(); // 전역변수 초기화, 생성자 호출 
 
@@ -17,39 +17,42 @@ public class MenuView {
 	*/
 	public void printMenu(){
         
-		 while(true){
-	           System.out.println("----------------------------------------------------------------------------------");
-	           System.out.println("1. 전체검색    2. 모델번호검색     3.등록     4. 수정   5. 삭제   6.가격기준정렬  9. 종료");
-			   System.out.println("----------------------------------------------------------------------------------");
-			   System.out.print("메뉴선택 > ");
+	     while(true){
+           System.out.println("----------------------------------------------------------------------------------");
+           System.out.println("1. 전체검색    2. 모델번호검색     3.등록     4. 수정   5. 삭제   6.가격기준정렬  9. 종료");
+		   System.out.println("----------------------------------------------------------------------------------");
+		   System.out.print("메뉴선택 > ");
 
-			   String  menu = sc.nextLine();
-			   switch(menu){
-	               case "1" : 
-	                 controller.selectAll();
+		   String  menu = sc.nextLine();
+		   switch(menu){
+               case "1" : 
+                 controller.selectAll();
+			   break;
+			   case "2" : 
+                 this.inputSearch();
+			   break;
+			   case "3" : 
+                 this.inputInsert();
+			   break;
+			   case "4" : 
+                 this.inputUpdate();
+			   break;
+			   case "5" : 
+	              this.inputDelete();
+	              break;
+			   case "6" : 
+				   controller.selectSortByPrice();
 				   break;
-				   case "2" : 
-	                 this.inputSearch();
-				   break;
-				   case "3" : 
-	                 this.inputInsert();
-				   break;
-				   case "4" : 
-	                 this.inputUpdate();
-				   break;
-				   case "5" : 
-		                 this.inputDelete();
-				   case "6" : 
-					   controller.selectSortByPrice();
-					   break;
-				   case "9" : 
-	                 System.exit(0);
-				   default:
-					   System.out.println("메뉴를 다시 선택해주세요!!!!");
+			   case "9" : 
+				   //파일저장 -> controller -> service
+                 System.exit(0);
+			   default:
+				   System.out.println("메뉴를 다시 선택해주세요!!!!");
 
-			   }//switch문끝
+		   }//switch문끝
 
-			 }//while문끝
+		 }//while문끝
+
 	}//메소드끝
 
 	/**
@@ -68,7 +71,11 @@ public class MenuView {
 		System.out.print("모델설명은? ");
         String modelDetail = sc.nextLine();
 
-		controller.insert( new Electronics(modelNo, modelName, modelPrice, modelDetail) );
+        Electronics elec=
+        		new Electronics(modelNo, modelName, modelPrice, modelDetail);
+        
+		controller.insert( elec );
+
 	}
 
 	/**
@@ -78,6 +85,8 @@ public class MenuView {
        System.out.print("찾을 전자제품 모델번호는? ");
         int modelNo = Integer.parseInt(sc.nextLine());
 		controller.searchByModelNo(modelNo);
+
+   
 	}
 
 
@@ -88,16 +97,10 @@ public class MenuView {
         System.out.print("수정하려는 전자제품 모델번호는?? ");
         int modelNo = Integer.parseInt(sc.nextLine());
 
-		System.out.print("변경하려는 모델이름은? ");
-		String modelName = sc.nextLine();
-
-		System.out.print("변경하려는 모델가격은? ");
-		int modelPrice = Integer.parseInt(sc.nextLine());
-		
 		System.out.print("변경하려는 모델설명은? ");
         String modelDetail = sc.nextLine();
 
-		controller.update( new Electronics(modelNo , modelName, modelPrice, modelDetail) );
+		controller.update( new Electronics(modelNo , modelDetail) );
 
 	}
 	
@@ -105,9 +108,12 @@ public class MenuView {
 	  모델번호에 해당하는 전자제품 삭제 위해서 모델번호 키보드입력 처리하는 메소드
 	*/
   public void inputDelete(){
-     System.out.print("삭제할 전자제품 모델번호는? ");
+     System.out.print("삭제 할 전자제품 모델번호는? ");
       int modelNo = Integer.parseInt(sc.nextLine());
+      
 		controller.deleteModelNo(modelNo);
+
+ 
 	}
 
 }

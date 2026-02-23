@@ -1,9 +1,11 @@
 package mvc.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mvc.dto.Electronics;
-import mvc.exception.DuplicateModelNoException;
+import mvc.exception.DMLException;
+import mvc.exception.DuplicateModelNoEexepction;
 import mvc.exception.ElectronicsArrayBoundsException;
 import mvc.exception.SearchNotFoundException;
 
@@ -14,23 +16,19 @@ public interface ElectronicsService {
      *
      * @param electronics
      * 
-     * : 최대 List에 저장된 객체의 개수가 MAX_SIZE를 벗어나면 
+     * : 최대 List에 저장된 객체의 개수가 MAX-SIZE를 벗어나면 
      *    ElectronicsArrayBoundsException 예외발생
      *      - 예외메시지 : 배열의 길이를 벗어나 더이상 등록 할수 없습니다.
-     *      
-     *      
-     *    modelNo가 중복이면 DuplicateModelNoException 발생시킨다.
      * 
      */
     public void insert(Electronics electronics) 
-    		throws ElectronicsArrayBoundsException , DuplicateModelNoException;
+    		throws ElectronicsArrayBoundsException, DuplicateModelNoEexepction;
 
     /**
      * 등록된 전체 전자제품 검색 
      * @return
      */
-    public List<Electronics> selectAll() ; //검색결과가 뜨지 않을 경우 컨트롤러에서 예외처리
-    
+    public List<Electronics> selectAll() ;
     
     /**
      * 모델번호에 해당하는 전자제품 검색 
@@ -40,7 +38,7 @@ public interface ElectronicsService {
      *      SearchNotFoundException 예외발생
      *       -예외메시지 : modelNo+"는 없는 모델번호로 검색할수 없습니다."
      */
-    public Electronics searchByModelNo(int modelNo) throws SearchNotFoundException;
+    public Electronics searchByModelNo(int modelNo)throws SearchNotFoundException ;
 
 
     /**
@@ -69,10 +67,31 @@ public interface ElectronicsService {
      *  만약, 가격이 같으면 modelNo를 기준으로 정렬한다.
      * @return
      */
-    public List<Electronics> selectSortByPrice();
-    //comparable or compartor 원하는 걸로 작업
-
+    public List<Electronics> selectSortByPrice() ;
+    
+    ////////////2개의 추가기능///////////////////////////////
+    
+    
+    ///// 종료했을대 해야할 일( 객체(List)를 파일에 저장)///////////////////////////
+    public void saveObject();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

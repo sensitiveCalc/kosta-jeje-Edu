@@ -3,8 +3,12 @@ package mvc.controller;
 import java.util.List;
 
 import mvc.dto.Electronics;
+import mvc.exception.DuplicateModelNoException;
+import mvc.exception.ElectronicsArrayBoundsException;
+import mvc.exception.SearchNotFoundException;
 import mvc.service.ElectronicsService;
 import mvc.service.ElectronicsServiceImpl;
+import mvc.view.FailView;
 import mvc.view.SuccessView;
 
 
@@ -31,19 +35,27 @@ public class ElectronicsController {
 	 /**
      * 전자제품 등록 
      */
-   
     public void insert(Electronics electronics) {
-       
+       try {
+    	   service.insert(electronics);
+    	   SuccessView.printMessage("등록 성공하였습니다.");
+       }catch (ElectronicsArrayBoundsException | DuplicateModelNoException e){
+    	   FailView.errorMessage(e.getMessage());
+       }
     }
-    
-    
 
+    
     /**
      * 모델번호에 해당하는 전자제품 검색
      * @param modelNo
      */
     public void searchByModelNo(int modelNo) {
-    	
+    	try {
+    		Electronics elec = service.searchByModelNo(modelNo);
+    		SuccessView.printSearchByModelNo(elec);
+    	} catch (SearchNotFoundException e) {
+    		FailView.errorMessage( e.getMessage());
+    	}
     } 
 
     /**
@@ -51,7 +63,12 @@ public class ElectronicsController {
      * @param electronics
      */
     public void update(Electronics electronics) {
-    	
+    	try {
+    		service.update(electronics);
+    		SuccessView.printMessage("수정 성공하였습니다.");
+    	}catch (SearchNotFoundException e) {
+    		FailView.errorMessage(e.getMessage());
+    	}
     }
     
     /**
@@ -59,7 +76,12 @@ public class ElectronicsController {
      * @param electronics
      */
 	public void deleteModelNo(int modelNo) {
-		
+		try {
+			service.delete(modelNo);
+			SuccessView.printMessage(modelNo+"에 해당하는 상품정보가 삭제되었습니다.");
+		}catch (SearchNotFoundException e) {
+			FailView.errorMessage(e.getMessage());
+		}
 	}
 	
 	/**
@@ -68,7 +90,15 @@ public class ElectronicsController {
      * @return
      */
     public void selectSortByPrice() {
-    	
+    	try {
+    		List<Electronics> listPrice = service.selectSortByPrice();
+    		if(listPrice.isEmpty()) {
+    			FailView.errorMessage("정렬할 데이터가 없습니다.");
+    		}
+    		SuccessView.printAll(listPrice);
+    	}catch (Exception e) {
+    		FailView.errorMessage(e.getMessage());
+    	}
     }
     
 }
